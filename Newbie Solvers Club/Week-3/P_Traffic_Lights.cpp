@@ -8,22 +8,24 @@ int main()
 
     int x, n;
     cin >> x >> n;
-    multiset<pair<int, pair<int, int>>> mst;
-    mst.insert({x + 1, {0, x}});
+    set<int> lights;
+    multiset<int> distance;
+    lights.insert(0);
+    lights.insert(x);
+    distance.insert(x);
     while (n--)
     {
         int p;
         cin >> p;
-        auto temp = mst.rbegin();
-        if (p >= temp->second.first && p <= temp->second.second)
-        {
-            pair<int, pair<int, int>> first = {p - temp->second.first, {temp->second.first, p}};
-            mst.insert(first);
-            pair<int, pair<int, int>> second = {temp->second.second - p, {p, temp->second.second}};
-            mst.insert(second);
-            mst.erase(--mst.end());
-        }
-        cout << mst.rbegin()->first << " ";
+        auto it = lights.upper_bound(p);
+        int right = *it;
+        it--;
+        int left = *it;
+        distance.erase(distance.find(right - left));
+        distance.insert(right - p);
+        distance.insert(p - left);
+        lights.insert(p);
+        cout << *distance.rbegin() << " ";
     }
 
     return 0;
