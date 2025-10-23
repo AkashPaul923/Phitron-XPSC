@@ -18,10 +18,20 @@ int main()
             cin >> v[i];
         }
         int count = 1;
+        set<int> s1;
+        set<int> s2;
+        s1.insert(v[0]);
         for (int i = 1; i < n; i++)
         {
-            if (v[i] == v[0])
+            s2.insert(v[i]);
+            if (s1.find(v[i]) != s1.end())
+                s1.erase(s1.find(v[i]));
+            if (s1.empty())
+            {
                 count++;
+                s1 = s2;
+                s2.clear();
+            }
         }
         cout << count << endl;
     }
