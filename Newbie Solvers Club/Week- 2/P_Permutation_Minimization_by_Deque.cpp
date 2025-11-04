@@ -18,22 +18,19 @@ int main()
         v.push_back(val);
         for (int i = 1; i < n; i++)
         {
-            int x;
-            cin >> x;
-            int r = v.size() - idx - 1;
-            int l = idx;
-            if (l <= r)
-            {
-                v.push_front(x);
-                idx++;
-            }
+            cin >> val;
+            if (val < v.front())
+                v.push_front(val);
             else
-            {
-                v.push_back(x);
-            }
+                v.push_back(val);
         }
-        for (int vl : v)
-            cout << vl << " ";
+        int k = 0;
+        while (!v.empty())
+        {
+            k++;
+            cout << v.front() << " ";
+            v.pop_front();
+        }
         cout << endl;
     }
 
