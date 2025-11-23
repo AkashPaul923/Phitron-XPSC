@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define ld long double
+#define nl '\n'
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
+
+void solve()
+{
+    int n;
+    cin >> n;
+    string s, t;
+    cin >> s >> t;
+    if (s == t || s[0] == '1')
+    {
+        yes;
+        return;
+    }
+
+    int pos = -1;
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '1')
+        {
+            pos = i;
+            break;
+        }
+    }
+
+    if (pos == -1)
+    {
+        no;
+        return;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] != t[i])
+        {
+            if (pos > i)
+            {
+                no;
+                return;
+            }
+        }
+    }
+
+    yes;
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
