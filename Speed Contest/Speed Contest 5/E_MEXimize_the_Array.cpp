@@ -16,7 +16,7 @@ void solve()
         cin >> a[i];
     }
     sort(a.begin(), a.end());
-    int count = 0;
+    ll count = 0;
     for (int i = 0; i < n; i++)
     {
         count += abs(a[i] - i);
