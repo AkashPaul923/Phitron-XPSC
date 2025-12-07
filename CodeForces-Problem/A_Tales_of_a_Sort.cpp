@@ -10,26 +10,14 @@ void solve()
 {
     int n;
     cin >> n;
-    int mx = INT_MIN, mxi, mn = INT_MAX, mni;
+    vector<ll> a(n);
     for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        if (x > mx)
-        {
-            mx = x;
-            mxi = i;
-        }
-        if (x < mn)
-        {
-            mn = x;
-            mni = i;
-        }
-    }
-    if (mxi < mni)
-        cout << mx << " " << mn << nl;
-    else
-        cout << mn << " " << mx << nl;
+        cin >> a[i];
+    ll ans = 0;
+    for (int i = 0; i < n - 1; i++)
+        if (a[i] > a[i + 1])
+            ans = max(ans, a[i]);
+    cout << ans << nl;
 }
 
 int main()
